@@ -2,7 +2,6 @@
     <div id="app">
         <div class="top-header">
             <span class="my-1 float-left">Elevator Shaft&nbsp;<sub>v1.0.0</sub></span>
-
         </div>
         <elevator-music/>
         <div class="splash">
@@ -12,6 +11,10 @@
             </div>
         </div>
         <elevator-config/>
+        <div class="elevator-storey--wrapper">
+            <storeys/>
+            <elevators/>
+        </div>
 
     </div>
 </template>
@@ -19,20 +22,20 @@
 <script>
     import ElevatorMusic from './components/ElevatorMusic'
     import ElevatorConfig from './components/ElevatorConfig'
+    import Storeys from './components/Storeys'
+    import Elevators from './components/Elevators';
+
 
     export default {
         name: 'App',
         components: {
             ElevatorMusic,
             ElevatorConfig,
+            Storeys,
+            Elevators,
+
         },
         computed: {
-            getElevators: function () {
-                return this.$store.state.elevators;
-            },
-            getFloors: function () {
-                return this.$store.state.floors;
-            },
         },
         mounted() {
             $('.top-header').hide()
@@ -42,6 +45,7 @@
             letsRide: function () {
                 this.$store.commit('init', true)
                 $('.splash').fadeOut()
+                $('.top-header').fadeIn()
                 $('.top-header').slideDown()
 
             },
@@ -70,6 +74,7 @@
         position: fixed;
         width: 100%;
         height: 100%;
+        z-index: 1;
         font-family: 'Modak', cursive;
         background: $pallete_brown;
         color: $pallete_turq;
@@ -94,8 +99,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
-    audio {
-        /*display: none;*/
+    .elevator-storey--wrapper{
+        position: relative;
+        width: 90vw;
     }
 </style>

@@ -6,7 +6,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning"># Storeys</span>
                     </div>
-                    <input type="number" class="form-control" aria-label="Large" :value="getFloors">
+                    <input @change="changeStoreys($event)" type="number" class="form-control" aria-label="Large" :value="getStoreys">
                 </div>
             </div>
             <div class="col-md-6">
@@ -14,7 +14,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning"># Elevators</span>
                     </div>
-                    <input type="number" class="form-control" aria-label="Large" :value="getElevators">
+                    <input @change="changeElevators($event)" type="number" class="form-control" aria-label="Large" :value="getElevators">
                 </div>
             </div>
         </div>
@@ -31,9 +31,17 @@
             getElevators: function () {
                 return this.$store.state.elevators;
             },
-            getFloors: function () {
-                return this.$store.state.floors;
+            getStoreys: function () {
+                return this.$store.state.storeys;
             },
+        },
+        methods:{
+            changeStoreys: function (event) {
+                this.$store.commit('changeStoreys', parseInt(event.target.value))
+            },
+            changeElevators: function (event) {
+                this.$store.commit('changeElevators', parseInt(event.target.value))
+            }
         },
     }
 </script>

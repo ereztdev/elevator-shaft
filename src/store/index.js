@@ -6,21 +6,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     elevators: 2,
-    floors:7,
+    storeys:7,
     init:false,
   },
   mutations: {
     changeElevators(state, elevators) {
       state.elevators = elevators
     },
-    changeFloors(state, floors) {
-      state.floors = floors
+    changeStoreys(state, storeys) {
+      state.storeys = storeys
     },
     init(state, payload) {
       state.init = payload
     },
-  },
-  actions: {
   },
   modules: {
   }
