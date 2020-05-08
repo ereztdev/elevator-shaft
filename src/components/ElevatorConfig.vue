@@ -6,7 +6,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning"># Storeys</span>
                     </div>
-                    <input @change="changeStoreys($event)" type="number" class="form-control" aria-label="Large" :value="getStoreys">
+                    <input @change="changeStoreys($event)"
+                           type="number"
+                           class="form-control"
+                           aria-label="Large"
+                           :value="getStoreys"
+                           min="2"
+                    >
                 </div>
             </div>
             <div class="col-md-6">
@@ -14,7 +20,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning"># Elevators</span>
                     </div>
-                    <input @change="changeElevators($event)" type="number" class="form-control" aria-label="Large" :value="getElevators">
+                    <input @change="changeElevators($event)"
+                           type="number"
+                           class="form-control"
+                           aria-label="Large"
+                           :value="getElevators"
+                           max="30"
+                           min="2"
+                           step="1"
+                    >
                 </div>
             </div>
         </div>
@@ -29,7 +43,7 @@
                 return this.$store.state.init;
             },
             getElevators: function () {
-                return this.$store.state.elevators;
+                return this.$store.state.elevators.length;
             },
             getStoreys: function () {
                 return this.$store.state.storeys;

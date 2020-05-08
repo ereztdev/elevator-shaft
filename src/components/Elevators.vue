@@ -3,7 +3,7 @@
         <div v-for="(elevator,index) in getElevators"
              v-bind:key="index"
              class="elevator"
-        >{{elevator}}
+        >{{elevator.id}}
         </div>
     </div>
 </template>

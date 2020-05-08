@@ -102,5 +102,6 @@
     .elevator-storey--wrapper{
         position: relative;
         width: 90vw;
+        margin: auto;
     }
 </style>

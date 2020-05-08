@@ -1,16 +1,18 @@
 <template>
     <div class="container-fluid storey--wrapper">
-        <div v-for="(floor,index) in getStoreys" v-bind:key="index"  class="row floor">
+        <div v-for="(storey,index) in getStoreys" v-bind:key="index"  class="row floor">
             <div class="col-sm-10 floor__shaft">
-                <div class="">Floor {{getStoreys - floor}}</div>
+                <div class="">Floor {{getStoreys - storey}}</div>
             </div>
             <div class="col-sm-2 floor__button">
-                <button type="button" class="btn btn-primary">call elevator</button>
+                <button @click="callElevator($event)"
+                        type="button"
+                        class="btn btn-primary"
+                        :data-storey="getStoreys - storey"
+                >call<br>elevator
+                </button>
             </div>
         </div>
-<!--        <div v-for="(floor,index) in getStoreys" v-bind:key="index" class="floor">-->
-<!--            <div class="">Floor {{getStoreys - floor}}</div>-->
-<!--        </div>-->
     </div>
 </template>
 
@@ -23,6 +25,11 @@
             getStoreys: function () {
                 return this.$store.state.storeys;
             },
+        },
+        methods:{
+            callElevator: function (event) {
+                this.$store.commit('elevatorCall', parseInt($(event.target).data('storey')));
+            }
         },
     }
 </script>
