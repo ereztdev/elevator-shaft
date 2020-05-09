@@ -1,15 +1,17 @@
 <template>
     <div>
         <a @click="muteMusic($event)" class="btn float-right" :class="muted ? `btn-success` : `btn-danger`" href="#">
-            {{muted ? `Play` : `Mute`}} annoying elevator music &nbsp;&nbsp;&nbsp;
-<!--            <span v-if="!muted" class="fas fa-volume-mute fa-2x" style=" vertical-align: middle;"></span>-->
-<!--            <span v-if="muted" class="fas fa-volume-up fa-2x" style=" vertical-align: middle;"></span>-->
+            {{muted ? `Play` : `Mute`}} annoying elevator music
             <font-awesome-icon v-if="!muted" icon="volume-mute"/>
             <font-awesome-icon v-if="muted" icon="volume-up"/>
         </a>
         <audio v-if="isInit" id="elevatorMusicPlayer" autoplay loop>
             <source src="audio/elevator_music.mp3" type="audio/mpeg">
         </audio>
+        <audio id="elevatorDing">
+            <source src="audio/ding.mp3" type="audio/mpeg" preload="auto">
+        </audio>
+
     </div>
 </template>
 

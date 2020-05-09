@@ -25,9 +25,9 @@
                            class="form-control"
                            aria-label="Large"
                            :value="getElevators"
+                           step="1"
                            max="30"
                            min="2"
-                           step="1"
                     >
                 </div>
             </div>
@@ -54,6 +54,10 @@
                 this.$store.commit('changeStoreys', parseInt(event.target.value))
             },
             changeElevators: function (event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+                event.cancelBubble = true;
                 this.$store.commit('changeElevators', parseInt(event.target.value))
             }
         },

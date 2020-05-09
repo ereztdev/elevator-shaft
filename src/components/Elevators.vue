@@ -2,8 +2,10 @@
     <div class="elevator--wrapper">
         <div v-for="(elevator,index) in getElevators"
              v-bind:key="index"
+             v-bind:elevator-id="index"
+             v-bind:style="{bottom:elevator.current_floor * 100+`px`}"
              class="elevator"
-        >{{elevator.id}}
+        >{{elevator.id + 1}}<br><span class="text-white">{{elevator.travelling}}</span>
         </div>
     </div>
 </template>
@@ -15,11 +17,6 @@
             getElevators: function () {
                 return this.$store.state.elevators;
             },
-            getElevatorWidth: function () {
-                // let elevators = this.$store.state.elevators;
-                return 120
-
-            }
         },
 
     }
