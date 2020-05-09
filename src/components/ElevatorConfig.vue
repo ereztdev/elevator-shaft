@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="input-group input-group-lg my-5">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-warning"># Storeys</span>
+                        <span class="input-group-text" :class="isBlocked ? `bg-danger text-white` : `bg-warning`"># Storeys</span>
                     </div>
                     <input @change="changeStoreys($event)"
                            :disabled="isBlocked"
@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="input-group input-group-lg my-5">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-warning"># Elevators</span>
+                        <span class="input-group-text" :class="isBlocked ? `bg-danger text-white` : `bg-warning`"># Elevators</span>
                     </div>
                     <input @change="changeElevators($event)"
                            :disabled="isBlocked"

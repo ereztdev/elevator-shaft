@@ -39,16 +39,19 @@
                     return false;
 
                 let self = this;
-                $buttonEl.addClass('bg-danger')
+                $buttonEl.addClass('bg-danger');
+                $buttonEl.prop('disabled', true);
                 let ttt = Math.abs(elevator.calledFromStorey - elevator.current_floor) * 1000
                 $(`.elevator[elevator-id="${elevator.id}"]`)
                     .animate({bottom: `${elevator.calledFromStorey * 100}px`}, ttt, function () {
                         $buttonEl.removeClass('bg-danger');
+                        $buttonEl.prop('disabled', false);
                         $buttonEl.addClass('bg-success');
                         var sound = document.getElementById("elevatorDing");
                         sound.load();
                         sound.play();
                         setTimeout(function () {
+
                             self.$store.commit('elevatorReachedFloor', elevator);
                             $buttonEl.removeClass('bg-success');
                             $buttonEl.addClass('bg-primary');
