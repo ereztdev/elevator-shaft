@@ -12,6 +12,7 @@ export default new Vuex.Store({
         ],
         storeys: 7,
         init: false,
+        blockConfig: false,
         servicedElevatorCalls: [],
     },
     mutations: {
@@ -46,8 +47,8 @@ export default new Vuex.Store({
         updateElevator(state, payload) {
             let elevatorId = payload.elevatorObj.elevatorId;
             if (elevatorId >= 0) {
-                let currentStateCalledElevator = state.elevators.filter(elevator => elevator.id === elevatorId)[0]
-                let current_floor = currentStateCalledElevator.current_floor;
+                const currentStateCalledElevator = state.elevators.filter(elevator => elevator.id === elevatorId)[0]
+                const current_floor = currentStateCalledElevator.current_floor;
                 if (current_floor !== payload.calledFromStorey) {
                     const index = state.elevators.findIndex(elevator => elevator.id === elevatorId);
                     state.elevators.splice(index, 1, {
@@ -62,12 +63,14 @@ export default new Vuex.Store({
     },
     actions: {
         ELEVATOR_CALL: function ({commit, state}, calledFromStorey) {
-            let floorHasElevator = state.elevators.filter(elevatorObj => {
+            const floorHasElevator = state.elevators.filter(elevatorObj => {
                 return elevatorObj.current_floor === calledFromStorey
-            })
-            let elevatorObj = getClosestAvailableElevatorObj(state, calledFromStorey);
+            });
+
+            const elevatorObj = getClosestAvailableElevatorObj(state, calledFromStorey);
             if (elevatorObj === -1 || floorHasElevator.length > 0)
                 return null
+            state.blockConfig = true;
             commit('updateElevator', {elevatorObj, calledFromStorey});
             return state.elevators[elevatorObj.elevatorId];
         }

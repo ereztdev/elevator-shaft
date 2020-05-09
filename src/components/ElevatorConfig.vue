@@ -7,6 +7,7 @@
                         <span class="input-group-text bg-warning"># Storeys</span>
                     </div>
                     <input @change="changeStoreys($event)"
+                           :disabled="isBlocked"
                            type="number"
                            class="form-control"
                            aria-label="Large"
@@ -21,6 +22,7 @@
                         <span class="input-group-text bg-warning"># Elevators</span>
                     </div>
                     <input @change="changeElevators($event)"
+                           :disabled="isBlocked"
                            type="number"
                            class="form-control"
                            aria-label="Large"
@@ -39,6 +41,9 @@
     export default {
         name: "ElevatorConfig",
         computed: {
+            isBlocked: function(){
+                return this.$store.state.blockConfig;
+            },
             isInit: function () {
                 return this.$store.state.init;
             },

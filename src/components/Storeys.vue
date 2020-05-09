@@ -28,14 +28,13 @@
         },
         methods: {
             callElevator: function (event) {
-                let $buttonEl =  $(event.target);
-                this.$store.dispatch('ELEVATOR_CALL', parseInt($(event.target).data('storey')))
+                this.$store.dispatch('ELEVATOR_CALL', event.target.getAttribute("data-storey"))
                     .then(elevator => {
-                            this.animateElevatorCall(elevator,$buttonEl);
+                            this.animateElevatorCall(elevator, $(event.target));
                         }
                     );
             },
-            animateElevatorCall: function (elevator,$buttonEl) {
+            animateElevatorCall: function (elevator, $buttonEl) {
                 if (!elevator)
                     return false;
 
@@ -43,7 +42,7 @@
                 $buttonEl.addClass('bg-danger')
                 let ttt = Math.abs(elevator.calledFromStorey - elevator.current_floor) * 1000
                 $(`.elevator[elevator-id="${elevator.id}"]`)
-                    .animate({bottom: `${elevator.calledFromStorey * 100}px`}, ttt,function () {
+                    .animate({bottom: `${elevator.calledFromStorey * 100}px`}, ttt, function () {
                         $buttonEl.removeClass('bg-danger');
                         $buttonEl.addClass('bg-success');
                         var sound = document.getElementById("elevatorDing");
@@ -53,7 +52,7 @@
                             self.$store.commit('elevatorReachedFloor', elevator);
                             $buttonEl.removeClass('bg-success');
                             $buttonEl.addClass('bg-primary');
-                        },2000);
+                        }, 2000);
                     });
             }
         },
@@ -68,6 +67,7 @@
     .floor__shaft {
         border: black 1px solid;
     }
+
     .floor__button {
         button {
             margin-top: 25px;

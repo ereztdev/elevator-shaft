@@ -5,7 +5,7 @@
              v-bind:elevator-id="index"
              v-bind:style="{bottom:elevator.current_floor * 100+`px`}"
              class="elevator"
-        >{{elevator.id + 1}}<br><span class="text-white">{{elevator.travelling}}</span>
+        >{{elevator.id + 1}}<br><span class="text-white">{{elevator.travelling ? `in-use` : 'ready'}}</span>
         </div>
     </div>
 </template>
