@@ -8,4 +8,4 @@
 * Either download or clone (`git clone https://github.com/ereztdev/elevator-shaft.git`) this repo into your webserver 
 * Switch into the repo directory where you pulled the repo: `cd elevator-shaft`
 * `npm install` to install node.js dependencies
-* `npm run start` to transpile all frontend assets and run a node server.
+* `npm run serve` to transpile all frontend assets and run a node server.
